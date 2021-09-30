@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+int main() {
+    int k,d,l=0,r=0,end[100];
+    int L_arr[5]={1,45,78,95,99};
+    int R_arr[7]={1,36,56,68,156,196,600};
+    k=sizeof(L_arr)/sizeof(L_arr[0]);
+    d=sizeof(R_arr)/sizeof(R_arr[0]);
+    for(int i=0;i<k+d;i++){
+        if (L_arr[l]>R_arr[r])
+        {
+            end[i]=R_arr[r];
+            r++;
+        }
+        else if  (k-l<1 || d-r<1)
+        {
+            if (k - l < 1) {
+                end[i] = R_arr[r];
+                r++;
+            } else {
+                end[i] = L_arr[l];
+                l++;
+            }
+        }
+        else{
+            end[i]=L_arr[l];
+            l++;
+        }
+    }
+    for(int i=0;i<k+d;i++){
+        cout<<end[i]<<" ";
+    }
+
+    return 0;
+}
