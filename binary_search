@@ -2,7 +2,8 @@
 #include <cmath>
 
 using namespace std;
-int  binsear (int n,int var, int *arr) {
+
+int binsear(int n, int var, int *arr) {
     int l = 0, r, mid, search;
     r = n - 1;
     while (l <= r) {
@@ -22,7 +23,7 @@ int main() {
     int var;
     int arr[] = {1, 6, 9, 16, 19};
     cin >> var;
-    int n=sizeof (arr)/ sizeof (arr[0]);
-    cout<<binsear(n,var, arr);
+    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << binsear(n, var, arr);
     return 0;
 }
