@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <set>
+#include <fstream>
+#include <iostream>
+using namespace std;
+
+struct people{
+    string  country[100001];
+    string surname[100001];
+    set <string> sort_count;
+};
+int main() {
+    ifstream fin ("race.in");
+    ofstream fout ("race.out");
+    people cs;
+
+    int n;
+    fin>>n;
+    for(int i=0;i<n;i++) {
+        fin >> cs.country[i] >> cs.surname[i];
+        cs.sort_count.emplace(cs.country[i]);
+    }
+    while(cs.sort_count.size()!=0) {
+        fout << "==="<<*(cs.sort_count.begin()) <<"==="<<"\n";
+        for (int i = 0; i < n; i++) {
+            if (*(cs.sort_count.begin())==cs.country[i])
+                fout << " " << cs.surname[i] << "\n";
+
+        }
+        cs.sort_count.erase(*(cs.sort_count.begin()));
+    }
+
+    return 0;
+}
