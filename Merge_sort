@@ -1,0 +1,56 @@
+#include <fstream>
+#include <iostream>
+using namespace std;
+void merge(int l1, int r1,int *arr){
+    int l = 0, r = 0,i=0,end[300001];
+    while (l1 > l && r1 > r) {
+        if (arr[l] > arr[r]) {
+            end[i] = arr[r];
+            r++;
+        } else {
+            end[i] = arr[l];
+            l++;
+        }
+        i++;
+    }
+    while (l1 > l) {
+        end[i] = arr[l];
+        l++;
+        i++;
+    }
+    while (r1 > r) {
+        end[i] = arr[r];
+        r++;
+        i++;
+    }
+}
+
+void merge_sort(int n, int *arr) {
+    int mid, L_arr[100], R_arr[100];
+    mid = n / 2;
+    if (n < 2)
+        return;
+    else {
+        for (int i = 0; i < mid; i++)
+            L_arr[i] = arr[i];
+        for (int i = mid; i < n; i++)
+            R_arr[i - mid] = arr[i];
+        merge_sort(mid, L_arr);
+        merge_sort(n - mid, R_arr);
+        merge(mid,  n - mid, R_arr);
+    }
+}
+
+int main() {
+    int n;
+    int arr[300001];
+    ifstream fin ("sort.in");
+    ofstream fout ("sort.out");
+    fin>>n;
+    for (int i = 0; i < n; i++)
+        fin >> arr[i];
+    merge_sort(n, arr);
+    for (int i = 0; i < n; i++)
+        fout << arr[i] << " ";
+    return 0;
+}
