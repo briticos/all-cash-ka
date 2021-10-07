@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+#include <set>
+using namespace std;
+
+int main() {
+  string  country[1000],surname[1000];
+  set <string> sort_count;
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++) {
+      cin >> country[i] >> surname[i];
+      sort_count.emplace(country[i]);
+  }
+  while(sort_count.size()!=0) {
+      cout << "==="<<*(sort_count.begin()) <<"==="<<"\n";
+      for (int i = 0; i < n; i++) {
+          if (*(sort_count.begin())==country[i])
+          cout << " " << surname[i] << "\n";
+
+      }
+      sort_count.erase(*(sort_count.begin()));
+  }
+    return 0;
+}
